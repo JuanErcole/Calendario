@@ -10,23 +10,14 @@ import { getMessagesES } from '../../helpers/getMessages';
 import { CalendarEvent } from '../components/CalendarEvent';
 import { useState } from 'react';
 import { CalendarModal } from '../components/CalendarModal';
+import { useUiStore } from '../../hooks/useUiStore';
+import { useCalendarStore } from '../../hooks/useCalendarStore';
 
-
-
-const events = [{
-  title: 'Cumpleaños del perro',
-  notes: 'Hay que comprar comida',
-  start: new Date(),
-  end: addHours( new Date(), 2 ),
-  bgColor:'#fafafa',
-  user: {
-    id: '123',
-    name: 'Juan'
-  }
-
-}]
 
 export const CalendarPage = () => {
+
+  const { openDateModal } = useUiStore();
+  const { events } = useCalendarStore();
 
   const [lastView, setLastView] = useState(localStorage.getItem('lastView') || 'week' );
 
@@ -45,7 +36,7 @@ export const CalendarPage = () => {
   }
 
   const onDoubleClick = ( event ) =>{
-    console.log({ doubleClick: event });
+    openDateModal();
   }
 
   const onSelect = ( event ) =>{
