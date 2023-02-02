@@ -8,7 +8,7 @@ export const FabDelete = () => {
     startDeleteEvent();
   }
   
-  
+   
   return (
     <button
       style={{ display: !hasEventSelected && 'none' }}
